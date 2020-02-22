@@ -1,0 +1,24 @@
+{
+    "name": "amaccis/php-stemmer",
+    "type": "library",
+    "description": "A PHP interface to the Snowball stemming algorithms",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Amaccis\\PhpStemmer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Amaccis\\PhpStemmer\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^7.4",
+        "ext-ffi": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8",
+        "phpstan/phpstan": "^0.12.11"
+    }
+}

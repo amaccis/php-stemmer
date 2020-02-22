@@ -1,0 +1,11 @@
+parameters:
+    level: 7
+    paths:
+        - src
+        - tests
+    checkMissingIterableValueType: false
+    ignoreErrors:
+        - '/Call to an undefined method FFI::sb_stemmer_new()/'
+        - '/Call to an undefined method FFI::sb_stemmer_list()/'
+        - '/Call to an undefined method FFI::sb_stemmer_stem()/'
+        - '/Call to an undefined method FFI::sb_stemmer_length()/'
