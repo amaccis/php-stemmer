@@ -2,8 +2,17 @@
 
 ## What is PhpStemmer?
 PhpStemmer is a PHP interface to the stemming algorithms from the [Snowball project](https://snowballstem.org/), largely inspired by Richard Boulton's [PyStemmer](https://github.com/snowballstem/pystemmer).
-It uses FFI (PHP >= 7.4.0) and needs to find libstermmer.so (a version of [Libstemmer](https://snowballstem.org/dist/libstemmer_c.tgz) compiled as shared library) in LD_LIBRARY_PATH. 
+It uses FFI (PHP >= 7.4.0) and needs to find libstemmer.so (a version of [Libstemmer](https://snowballstem.org/dist/libstemmer_c.tgz) compiled as shared library) in LD_LIBRARY_PATH. 
 In order to set-up this kind of environment you can take a look at [docker-php-libstemmer](https://github.com/amaccis/docker-php-libstemmer) Dockerfile or you can use the corresponding docker image: [amaccis/php-libstemmer](https://hub.docker.com/r/amaccis/php-libstemmer)
+
+## Installation
+
+Package is available on [Packagist](http://packagist.org/packages/amaccis/php-stemmer), 
+you can install it using [Composer](http://getcomposer.org).
+
+```shell
+composer require amaccis/php-stemmer
+```
 
 ## Usage
 
