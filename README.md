@@ -91,5 +91,7 @@ $word = "cycling"
 $stemmer = new Stemmer($algorithm);
 $stem = $stemmer->stemWord($word);
 var_dump($stem);
-// cycl
+/*
+string(4) "cycl"
+*/
 ```
