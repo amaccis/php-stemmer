@@ -7,7 +7,7 @@ In order to set-up this kind of environment you can take a look at [docker-php-l
 
 ## Installation
 
-Package is available on [Packagist](http://packagist.org/packages/amaccis/php-stemmer), 
+PhpStemmer is available on [Packagist](http://packagist.org/packages/amaccis/php-stemmer), 
 you can install it using [Composer](http://getcomposer.org).
 
 ```shell
