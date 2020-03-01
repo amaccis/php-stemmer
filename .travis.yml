@@ -1,7 +1,7 @@
 language: php
-dist: bionic
 
-php:
-  - 7.4
+services:
+  - docker
 
-before_install: echo "extension = ffi.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+before_install:
+  - docker pull amaccis/php-libstemmer
