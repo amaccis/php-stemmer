@@ -93,3 +93,6 @@ var_dump($stem);
 string(4) "cycl"
 */
 ```
+
+## License
+All files are MIT &copy; [Andrea Maccis](https://twitter.com/andreamaccis) except for _resources/libstemmer.h_ BSD-3 &copy; [Snowball Project](https://github.com/snowballstem/snowball).
