@@ -6,6 +6,8 @@ services:
 before_install:
   - docker run --name php-libstemmer -d -v $PWD:/var/www amaccis/php-libstemmer
 
-script:
+install:
   - docker exec php-libstemmer composer install
+
+script:
   - docker exec php-libstemmer ./vendor/bin/phpunit
