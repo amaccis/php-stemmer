@@ -1,6 +1,8 @@
 # PhpStemmer
 
 [![PHP Version](https://img.shields.io/badge/php-%5E7.4-blue.svg)](https://img.shields.io/badge/php-%5E7.4-blue.svg)
+[![Build Status](https://travis-ci.org/amaccis/php-stemmer.svg?branch=master)](https://travis-ci.org/amaccis/php-stemmer)
+
 
 ## What is PhpStemmer?
 PhpStemmer is a PHP interface to the stemming algorithms from the [Snowball project](https://snowballstem.org/), largely inspired by Richard Boulton's [PyStemmer](https://github.com/snowballstem/pystemmer).
@@ -81,12 +83,6 @@ array(26) {
   string(7) "turkish"
 }
 */
-```
-
-```php
-<?php
-
-use Amaccis\PhpStemmer\Stemmer;
 
 $algorithm = "english";
 $word = "cycling"
