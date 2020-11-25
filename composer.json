@@ -5,12 +5,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Amaccis\\PhpStemmer\\": "src/"
+            "Amaccis\\Stemmer\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Amaccis\\PhpStemmer\\Tests\\": "tests/"
+            "Amaccis\\Stemmer\\Tests\\": "tests/"
         }
     },
     "require": {

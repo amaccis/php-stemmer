@@ -5,9 +5,9 @@ declare(strict_types=1);
  * @author Andrea Maccis <andrea.maccis@gmail.com>
  */
 
-namespace Amaccis\PhpStemmer\Tests;
+namespace Amaccis\Stemmer\Tests;
 
-use Amaccis\PhpStemmer\Stemmer;
+use Amaccis\Stemmer\Stemmer;
 use PHPUnit\Framework\TestCase;
 
 class StemmerTest extends TestCase

@@ -5,9 +5,9 @@ declare(strict_types=1);
  * @author Andrea Maccis <andrea.maccis@gmail.com>
  */
 
-namespace Amaccis\PhpStemmer;
+namespace Amaccis\Stemmer;
 
-use Amaccis\PhpStemmer\Adapter\Libstemmer;
+use Amaccis\Stemmer\Adapter\Libstemmer;
 use FFI;
 
 class Stemmer implements StemmerInterface
