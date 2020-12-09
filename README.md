@@ -23,7 +23,7 @@ composer require amaccis/php-stemmer
 ```php
 <?php
 
-use Amaccis\PhpStemmer\Stemmer;
+use Amaccis\Stemmer\Stemmer;
 
 $algorithms = Stemmer::algorithms();
 var_dump($algorithms);
@@ -85,7 +85,7 @@ array(26) {
 */
 
 $algorithm = "english";
-$word = "cycling"
+$word = "cycling";
 $stemmer = new Stemmer($algorithm);
 $stem = $stemmer->stemWord($word);
 var_dump($stem);
