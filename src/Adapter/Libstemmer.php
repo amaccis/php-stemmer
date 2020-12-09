@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Amaccis\Stemmer\Adapter;
 
 use FFI;
+use FFI\CData;
 
 final class Libstemmer
 {
@@ -25,21 +26,21 @@ final class Libstemmer
 
     }
 
-    public function sbStemmerNew(string $algorithm): FFI\CData
+    public function sbStemmerNew(string $algorithm): CData
     {
 
         return $this->ffi->sb_stemmer_new($algorithm, self::CHARSET);
 
     }
 
-    public function sbStemmerList(): FFI\CData
+    public function sbStemmerList(): CData
     {
 
         return $this->ffi->sb_stemmer_list();
 
     }
 
-    public function sbStemmerStem(FFI\CData $sbStemmer, string $word): FFI\CData
+    public function sbStemmerStem(CData $sbStemmer, string $word): CData
     {
 
         $size = strlen($word);
@@ -52,14 +53,14 @@ final class Libstemmer
 
     }
 
-    public function sbStemmerLength(FFI\CData $sbStemmer): int
+    public function sbStemmerLength(CData $sbStemmer): int
     {
 
         return $this->ffi->sb_stemmer_length($sbStemmer);
 
     }
 
-    public function toString(FFI\CData $memoryArea, int $size): string
+    public function toString(CData $memoryArea, int $size): string
     {
 
         return FFI::string($memoryArea, $size);

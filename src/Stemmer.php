@@ -8,14 +8,14 @@ declare(strict_types=1);
 namespace Amaccis\Stemmer;
 
 use Amaccis\Stemmer\Adapter\Libstemmer;
-use FFI;
+use FFI\CData;
 
 class Stemmer implements StemmerInterface
 {
 
     private Libstemmer $libstemmer;
 
-    private FFI\CData $stemmer;
+    private CData $stemmer;
 
     private string $algorithm;
 
@@ -50,6 +50,7 @@ class Stemmer implements StemmerInterface
 
         $stem = $this->libstemmer->sbStemmerStem($this->stemmer, utf8_encode($word));
         $size = $this->libstemmer->sbStemmerLength($this->stemmer);
+
         return $this->libstemmer->toString($stem, $size);
 
     }
@@ -61,6 +62,7 @@ class Stemmer implements StemmerInterface
         foreach ($words as $word) {
             $stems[] = $this->stemWord($word);
         }
+
         return $stems;
 
     }
