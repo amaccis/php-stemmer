@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker run --name php-libstemmer -d -v $PWD:/var/www amaccis/php-libstemmer:1.0
+  - docker run --name php-libstemmer -d -v $PWD:/var/www amaccis/php-libstemmer:2.1.0
 
 install:
   - docker exec php-libstemmer composer install
