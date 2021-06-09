@@ -13,7 +13,7 @@ jobs:
     container:
       image: amaccis/php-libstemmer:2.0.0
       volumes:
-        - $PWD:/var/www
+        - .:/var/www
     steps:
       - name: checkout
         uses: actions/checkout@v2
