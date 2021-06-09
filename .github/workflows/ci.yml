@@ -15,5 +15,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: composer install
-        uses: php-actions/composer@v6
+        uses: composer install
 
