@@ -10,7 +10,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: amaccis/php-libstemmer:2.0.0
+    container:
+      image: amaccis/php-libstemmer:2.0.0
+      volumes:
+        - $PWD:/var/www
     steps:
       - name: checkout
         uses: actions/checkout@v2
