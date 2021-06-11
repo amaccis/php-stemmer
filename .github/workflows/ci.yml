@@ -13,8 +13,6 @@ jobs:
     container:
       image: amaccis/php-libstemmer:2.0.0
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: composer install
-        run: composer install
-
+      - uses: actions/checkout@v2
+      - uses: php-actions/composer@v5
+      - uses: php-actions/phpunit@v3
