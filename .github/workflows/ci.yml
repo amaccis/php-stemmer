@@ -18,4 +18,4 @@ jobs:
       - name: Install dependencies
         run: composer install
       - name: Run tests
-      - uses: bin/phpunit
+        run: bin/phpunit
