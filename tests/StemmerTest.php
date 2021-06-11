@@ -17,7 +17,7 @@ class StemmerTest extends TestCase
     {
 
         $algorithms = Stemmer::algorithms();
-        $this->assertCount(25, $algorithms);
+        $this->assertCount(26, $algorithms);
 
     }
 
