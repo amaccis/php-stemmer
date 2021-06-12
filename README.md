@@ -1,6 +1,6 @@
 # php-stemmer
 
-[![PHP Version](https://img.shields.io/badge/php-%5E7.4-blue.svg)](https://img.shields.io/badge/php-%5E7.4-blue.svg)
+[![PHP Version](https://img.shields.io/badge/php-%5E7.4%7C%5E8.0-blue.svg)](https://img.shields.io/badge/php-%5E7.4%7C%5E8.0-blue.svg)
 ![CI](https://github.com/amaccis/php-stemmer/workflows/CI/badge.svg)
 
 ## What is PHP Stemmer?
