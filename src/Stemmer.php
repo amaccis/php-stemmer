@@ -17,14 +17,11 @@ class Stemmer implements StemmerInterface
 
     private CData $stemmer;
 
-    private string $algorithm;
-
     public function __construct(string $algorithm)
     {
 
         $this->libstemmer = new Libstemmer();
         $this->stemmer = $this->libstemmer->sbStemmerNew($algorithm);
-        $this->algorithm = $algorithm;
 
     }
 
@@ -48,7 +45,7 @@ class Stemmer implements StemmerInterface
     public function stemWord(string $word): string
     {
 
-        $stem = $this->libstemmer->sbStemmerStem($this->stemmer, utf8_encode($word));
+        $stem = $this->libstemmer->sbStemmerStem($this->stemmer, $word);
         $size = $this->libstemmer->sbStemmerLength($this->stemmer);
 
         return $this->libstemmer->toString($stem, $size);
