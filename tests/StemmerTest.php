@@ -41,7 +41,8 @@ class StemmerTest extends TestCase
 
         return [
             ['english', 'cycling', 'cycl'],
-            ['italian', 'camminare', 'cammin']
+            ['italian', 'camminare', 'cammin'],
+            ['portuguese', 'atribuição', 'atribuiçã']
         ];
 
     }
@@ -66,7 +67,8 @@ class StemmerTest extends TestCase
 
         return [
             ['english', ['cycling', 'doors'], ['cycl', 'door']],
-            ['italian', ['camminare', 'porte'], ['cammin', 'port']]
+            ['italian', ['camminare', 'porte'], ['cammin', 'port']],
+            ['portuguese', ['atribuição', 'obrigações'], ['atribuiçã', 'obrig']]
         ];
 
     }
