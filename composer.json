@@ -2,6 +2,12 @@
     "name": "amaccis/php-stemmer",
     "type": "library",
     "description": "A PHP interface to the Snowball stemming algorithms",
+    "keywords": [
+        "snowball",
+        "stem",
+        "stemmer",
+        "stemming"
+    ],
     "license": "MIT",
     "autoload": {
         "psr-4": {
