@@ -62,7 +62,7 @@ class StemmerTest extends TestCase
 
     }
 
-    public function testThatStemmerWithAvailableAlgorithmAndNonAvailableEncodingThrowException(): void
+    public function testThatStemmerWithAvailableAlgorithmAndUnavailableEncodingThrowException(): void
     {
 
         $this->expectException(UnavailableAlgorithmException::class);
