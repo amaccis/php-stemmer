@@ -7,5 +7,6 @@ parameters:
     ignoreErrors:
         - '/Call to an undefined method FFI::sb_stemmer_new\(\)/'
         - '/Call to an undefined method FFI::sb_stemmer_list\(\)/'
+        - '/Call to an undefined method FFI::sb_stemmer_delete\(\)/'
         - '/Call to an undefined method FFI::sb_stemmer_stem\(\)/'
         - '/Call to an undefined method FFI::sb_stemmer_length\(\)/'

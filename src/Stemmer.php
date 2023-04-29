@@ -1,34 +1,40 @@
 <?php
 declare(strict_types=1);
 
-/**
- * @author Andrea Maccis <andrea.maccis@gmail.com>
- */
-
 namespace Amaccis\Stemmer;
 
 use Amaccis\Stemmer\Adapter\Libstemmer;
+use Amaccis\Stemmer\Enum\CharacterEncodingEnum;
+use Amaccis\Stemmer\Exception\UnavailableAlgorithmException;
+use FFI;
 use FFI\CData;
 
 class Stemmer implements StemmerInterface
 {
 
+    private const HEADER_PATH = __DIR__ . '/../resources/libstemmer.h';
+
     private Libstemmer $libstemmer;
 
     private CData $stemmer;
 
-    public function __construct(string $algorithm)
+    /**
+     * @param string $algorithm
+     * @param CharacterEncodingEnum $charenc
+     * @throws UnavailableAlgorithmException
+     */
+    public function __construct(string $algorithm, CharacterEncodingEnum $charenc = CharacterEncodingEnum::UTF_8)
     {
 
-        $this->libstemmer = new Libstemmer();
-        $this->stemmer = $this->libstemmer->sbStemmerNew($algorithm);
+        $this->libstemmer = new Libstemmer(self::HEADER_PATH);
+        $this->stemmer = $this->libstemmer->sbStemmerNew($algorithm, $charenc);
 
     }
 
     public static function algorithms(): array
     {
 
-        $libstemmer = new Libstemmer();
+        $libstemmer = new Libstemmer(self::HEADER_PATH);
         /** @var array $stemmerList */
         $stemmerList = $libstemmer->sbStemmerList();
         $algorithms = [];
@@ -45,10 +51,11 @@ class Stemmer implements StemmerInterface
     public function stemWord(string $word): string
     {
 
-        $stem = $this->libstemmer->sbStemmerStem($this->stemmer, $word);
+        $size = strlen($word);
+        $stem = $this->libstemmer->sbStemmerStem($this->stemmer, $word, $size);
         $size = $this->libstemmer->sbStemmerLength($this->stemmer);
 
-        return $this->libstemmer->toString($stem, $size);
+        return FFI::string($stem, $size);
 
     }
 

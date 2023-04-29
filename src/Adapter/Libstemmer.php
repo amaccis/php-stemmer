@@ -1,35 +1,36 @@
 <?php
 declare(strict_types=1);
 
-/**
- * @author Andrea Maccis <andrea.maccis@gmail.com>
- */
-
 namespace Amaccis\Stemmer\Adapter;
 
+use Amaccis\Stemmer\Enum\CharacterEncodingEnum;
+use Amaccis\Stemmer\Exception\UnavailableAlgorithmException;
 use FFI;
 use FFI\CData;
 
 final class Libstemmer
 {
 
-    private const HEADER = 'libstemmer.h';
-
-    private const CHARSET = 'UTF_8';
-
     private FFI $ffi;
 
-    public function __construct()
+    public function __construct(string $filename)
     {
 
-        $this->ffi = \FFI::load(__DIR__ . '/../../resources/' . self::HEADER);
+        $this->ffi = \FFI::load($filename);
 
     }
 
-    public function sbStemmerNew(string $algorithm): CData
+    /**
+     * @throws UnavailableAlgorithmException
+     */
+    public function sbStemmerNew(string $algorithm, CharacterEncodingEnum $charenc): CData
     {
 
-        return $this->ffi->sb_stemmer_new($algorithm, self::CHARSET);
+        $sbStemmer = $this->ffi->sb_stemmer_new($algorithm, $charenc->name);
+        if (is_null($sbStemmer)) {
+            throw new UnavailableAlgorithmException();
+        }
+        return $sbStemmer;
 
     }
 
@@ -40,10 +41,16 @@ final class Libstemmer
 
     }
 
-    public function sbStemmerStem(CData $sbStemmer, string $word): CData
+    public function sbStemmerDelete(CData $sbStemmer): void
     {
 
-        $size = strlen($word);
+        $this->ffi->sb_stemmer_delete();
+
+    }
+
+    public function sbStemmerStem(CData $sbStemmer, string $word, int $size): CData
+    {
+
         $c_word = FFI::new("char[$size]");
         FFI::memcpy($c_word, $word, $size);
         $sb_symbol = FFI::cast($this->ffi->type('sb_symbol'), $c_word);
@@ -57,13 +64,6 @@ final class Libstemmer
     {
 
         return $this->ffi->sb_stemmer_length($sbStemmer);
-
-    }
-
-    public function toString(CData $memoryArea, int $size): string
-    {
-
-        return FFI::string($memoryArea, $size);
 
     }
 
