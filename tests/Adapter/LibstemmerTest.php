@@ -10,7 +10,7 @@ use FFI\Exception;
 class LibstemmerTest extends TestCase
 {
 
-    public function testThatStemmerWithUnavailableAlgorithmThrowException(): void
+    public function testThatStemmerWithUnavailableAlgorithmThrowsException(): void
     {
 
         $this->expectException(Exception::class);
