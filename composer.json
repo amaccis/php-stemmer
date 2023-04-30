@@ -9,6 +9,12 @@
         "stemming"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrea Maccis",
+            "email": "andrea.maccis@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Amaccis\\Stemmer\\": "src/"
