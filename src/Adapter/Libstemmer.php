@@ -44,7 +44,7 @@ final class Libstemmer
     public function sbStemmerDelete(CData $sbStemmer): void
     {
 
-        $this->ffi->sb_stemmer_delete();
+        $this->ffi->sb_stemmer_delete($sbStemmer);
 
     }
 
