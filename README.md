@@ -1,12 +1,12 @@
 # php-stemmer
 
-[![PHP Version](https://img.shields.io/badge/php-%5E7.4%7C%5E8.0-blue.svg)](https://img.shields.io/badge/php-%5E7.4%7C%5E8.0-blue.svg)
+[![PHP Version](https://img.shields.io/badge/php-%5E8.1-blue.svg)](https://img.shields.io/badge/php-%5E8.1-blue.svg)
 ![CI](https://github.com/amaccis/php-stemmer/workflows/CI/badge.svg)
 
 ## What is PHP Stemmer?
 PHP Stemmer is a PHP interface to the stemming algorithms from the [Snowball project](https://snowballstem.org/), largely inspired by Richard Boulton's [PyStemmer](https://github.com/snowballstem/pystemmer).
 It uses FFI (PHP >= 7.4.0) and expects to find the file libstemmer.so (a version of [Libstemmer](https://snowballstem.org/dist/libstemmer_c.tgz) compiled as shared library) in LD_LIBRARY_PATH.  
-In order to set-up this kind of environment you can take a look at [docker-php-libstemmer](https://github.com/amaccis/docker-php-libstemmer) Dockerfile or you can use the corresponding docker image: [amaccis/php-libstemmer](https://hub.docker.com/r/amaccis/php-libstemmer)
+In order to set up this kind of environment you can take a look at [docker-php-libstemmer](https://github.com/amaccis/docker-php-libstemmer) Dockerfile or you can use the corresponding docker image: [amaccis/php-libstemmer](https://hub.docker.com/r/amaccis/php-libstemmer)
 
 ## Installation
 
@@ -23,73 +23,89 @@ composer require amaccis/php-stemmer
 <?php
 
 use Amaccis\Stemmer\Stemmer;
+use Amaccis\Stemmer\Enum\CharacterEncodingEnum;
 
 $algorithms = Stemmer::algorithms();
 var_dump($algorithms);
 /*
-array(26) {
-  [0]=>
+array(29) {
+  [0] =>
   string(6) "arabic"
-  [1]=>
+  [1] =>
+  string(8) "armenian"
+  [2] =>
   string(6) "basque"
-  [2]=>
+  [3] =>
   string(7) "catalan"
-  [3]=>
+  [4] =>
   string(6) "danish"
-  [4]=>
+  [5] =>
   string(5) "dutch"
-  [5]=>
+  [6] =>
   string(7) "english"
-  [6]=>
+  [7] =>
   string(7) "finnish"
-  [7]=>
+  [8] =>
   string(6) "french"
-  [8]=>
+  [9] =>
   string(6) "german"
-  [9]=>
+  [10] =>
   string(5) "greek"
-  [10]=>
+  [11] =>
   string(5) "hindi"
-  [11]=>
+  [12] =>
   string(9) "hungarian"
-  [12]=>
+  [13] =>
   string(10) "indonesian"
-  [13]=>
+  [14] =>
   string(5) "irish"
-  [14]=>
+  [15] =>
   string(7) "italian"
-  [15]=>
+  [16] =>
   string(10) "lithuanian"
-  [16]=>
+  [17] =>
   string(6) "nepali"
-  [17]=>
+  [18] =>
   string(9) "norwegian"
-  [18]=>
+  [19] =>
   string(6) "porter"
-  [19]=>
+  [20] =>
   string(10) "portuguese"
-  [20]=>
+  [21] =>
   string(8) "romanian"
-  [21]=>
+  [22] =>
   string(7) "russian"
-  [22]=>
+  [23] =>
+  string(7) "serbian"
+  [24] =>
   string(7) "spanish"
-  [23]=>
+  [25] =>
   string(7) "swedish"
-  [24]=>
+  [26] =>
   string(5) "tamil"
-  [25]=>
+  [27] =>
   string(7) "turkish"
+  [28] =>
+  string(7) "yiddish"
 }
 */
 
 $algorithm = "english";
 $word = "cycling";
-$stemmer = new Stemmer($algorithm);
+$stemmer = new Stemmer($algorithm); // default character encoding is UTF-8
 $stem = $stemmer->stemWord($word);
 var_dump($stem);
 /*
 string(4) "cycl"
+*/
+
+$algorithm = "basque";
+$word = "aberatsenetakoa";
+$stemmer = new Stemmer($algorithm, CharacterEncodingEnum::ISO_8859_1);
+$stem = $stemmer->stemWord($word);
+var_dump($stem);
+/*
+string(8) "aberatse"
 */
 ```
 
