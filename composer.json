@@ -30,8 +30,8 @@
         "ext-ffi": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.1",
-        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^11",
+        "phpstan/phpstan": "^2",
         "ext-iconv": "*"
     }
 }
