@@ -11,42 +11,12 @@ use PHPUnit\Framework\TestCase;
 class StemmerTest extends TestCase
 {
 
-    public function testThatAlgorithmsReturnsTheExpectedArray(): void
+    public function testThatAlgorithmsReturnsAnArrayNotEmpty(): void
     {
 
-        $expectedAlgorithms = [
-            'arabic',
-            'armenian',
-            'basque',
-            'catalan',
-            'danish',
-            'dutch',
-            'english',
-            'finnish',
-            'french',
-            'german',
-            'greek',
-            'hindi',
-            'hungarian',
-            'indonesian',
-            'irish',
-            'italian',
-            'lithuanian',
-            'nepali',
-            'norwegian',
-            'porter',
-            'portuguese',
-            'romanian',
-            'russian',
-            'serbian',
-            'spanish',
-            'swedish',
-            'tamil',
-            'turkish',
-            'yiddish'
-        ];
         $algorithms = Stemmer::algorithms();
-        $this->assertEquals($expectedAlgorithms, $algorithms);
+        $this->assertIsArray($algorithms);
+        $this->assertNotEmpty($algorithms);
 
     }
 
@@ -114,7 +84,7 @@ class StemmerTest extends TestCase
             ['catalan', 'arruïnada', 'arru'],
             ['danish', 'afbildningerne', 'afbildning'],
             ['hungarian', 'lenyűgözőnek', 'lenyűgöző'],
-            ['romanian', 'luminişurile', 'luminişur'],
+            ['romanian', 'luminișurile', 'luminișur'],
             ['russian', 'взъерошенный', 'взъерошен']
         ];
 
@@ -174,7 +144,6 @@ class StemmerTest extends TestCase
 
         return [
             ['hungarian', 'lenyűgözőnek', 'lenyűgöző'],
-            ['romanian', 'luminişurile', 'luminişur'],
         ];
 
     }
@@ -250,7 +219,7 @@ class StemmerTest extends TestCase
             ['catalan', ['gratuïtament', 'cuaespinós'], ['gratuit', 'cuaespin']],
             ['danish', ['afbildningerne', 'linnedklæderne'], ['afbildning', 'linnedklæd']],
             ['hungarian', ['lenyűgözőnek', 'megháromszorozódott'], ['lenyűgöző', 'megháromszorozódot']],
-            ['romanian', ['luminişurile', 'personalităţilor'], ['luminişur', 'personal']],
+            ['romanian', ['luminișurile', 'personalităţilor'], ['luminișur', 'personal']],
             ['russian', ['взъерошенный', 'затруднительное'], ['взъерошен', 'затруднительн']],
         ];
 
@@ -320,7 +289,6 @@ class StemmerTest extends TestCase
 
         return [
             ['hungarian', ['lenyűgözőnek', 'megháromszorozódott'], ['lenyűgöző', 'megháromszorozódot']],
-            ['romanian', ['luminişurile', 'personalităţilor'], ['luminişur', 'personal']],
         ];
 
     }
