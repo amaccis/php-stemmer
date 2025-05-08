@@ -51,9 +51,9 @@ final class Libstemmer
     public function sbStemmerStem(CData $sbStemmer, string $word, int $size): CData
     {
 
-        $c_word = FFI::new("char[$size]");
+        $c_word = $this->ffi->new("char[$size]");
         FFI::memcpy($c_word, $word, $size);
-        $sb_symbol = FFI::cast($this->ffi->type('sb_symbol'), $c_word);
+        $sb_symbol = $this->ffi->cast($this->ffi->type('sb_symbol'), $c_word);
         $word = FFI::addr($sb_symbol);
 
         return $this->ffi->sb_stemmer_stem($sbStemmer, $word, $size);
