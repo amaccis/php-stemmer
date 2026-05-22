@@ -3,7 +3,6 @@ parameters:
     paths:
         - src
         - tests
-    checkMissingIterableValueType: false
     ignoreErrors:
         - '/Call to an undefined method FFI::sb_stemmer_new\(\)/'
         - '/Call to an undefined method FFI::sb_stemmer_list\(\)/'

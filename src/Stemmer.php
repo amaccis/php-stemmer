@@ -31,11 +31,13 @@ class Stemmer implements StemmerInterface
 
     }
 
+    /**
+     * @return string[]
+     */
     public static function algorithms(): array
     {
 
         $libstemmer = new Libstemmer(self::HEADER_PATH);
-        /** @var array $stemmerList */
         $stemmerList = $libstemmer->sbStemmerList();
         $algorithms = [];
         $i = 0;
@@ -59,6 +61,10 @@ class Stemmer implements StemmerInterface
 
     }
 
+    /**
+     * @param string[] $words
+     * @return string[]
+     */
     public function stemWords(array $words): array
     {
 

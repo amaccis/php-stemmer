@@ -6,6 +6,7 @@ namespace Amaccis\Stemmer\Tests;
 use Amaccis\Stemmer\Enum\CharacterEncodingEnum;
 use Amaccis\Stemmer\Exception\UnavailableAlgorithmException;
 use Amaccis\Stemmer\Stemmer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class StemmerTest extends TestCase
@@ -15,7 +16,6 @@ class StemmerTest extends TestCase
     {
 
         $algorithms = Stemmer::algorithms();
-        $this->assertIsArray($algorithms);
         $this->assertNotEmpty($algorithms);
 
     }
@@ -46,9 +46,9 @@ class StemmerTest extends TestCase
      * @param string $word
      * @param string $stem
      *
-     * @dataProvider stemWordUtf8CharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordUtf8CharencProvider')]
     public function testThatStemWordWithNoCharencReturnsTheExpectedStem(string $algorithm, string $word, string $stem): void
     {
 
@@ -62,9 +62,9 @@ class StemmerTest extends TestCase
      * @param string $word
      * @param string $stem
      *
-     * @dataProvider stemWordUtf8CharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordUtf8CharencProvider')]
     public function testThatStemWordWithUtf8CharencReturnsTheExpectedStem(string $algorithm, string $word, string $stem): void
     {
 
@@ -73,6 +73,9 @@ class StemmerTest extends TestCase
 
     }
 
+    /**
+     * @return array<int, array{string, string, string}>
+     */
     public static function stemWordUtf8CharencProvider(): array
     {
 
@@ -95,9 +98,9 @@ class StemmerTest extends TestCase
      * @param string $word
      * @param string $stem
      *
-     * @dataProvider stemWordIso88591CharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordIso88591CharencProvider')]
     public function testThatStemWordWithIso88591CharencReturnsTheExpectedStem(string $algorithm, string $word, string $stem): void
     {
 
@@ -109,6 +112,9 @@ class StemmerTest extends TestCase
 
     }
 
+    /**
+     * @return array<int, array{string, string, string}>
+     */
     public static function stemWordIso88591CharencProvider(): array
     {
 
@@ -125,9 +131,9 @@ class StemmerTest extends TestCase
      * @param string $word
      * @param string $stem
      *
-     * @dataProvider stemWordIso88592CharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordIso88592CharencProvider')]
     public function testThatStemWordWithIso88592CharencReturnsTheExpectedStem(string $algorithm, string $word, string $stem): void
     {
 
@@ -139,6 +145,9 @@ class StemmerTest extends TestCase
 
     }
 
+    /**
+     * @return array<int, array{string, string, string}>
+     */
     public static function stemWordIso88592CharencProvider(): array
     {
 
@@ -153,9 +162,9 @@ class StemmerTest extends TestCase
      * @param string $word
      * @param string $stem
      *
-     * @dataProvider stemWordKoi8rCharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordKoi8rCharencProvider')]
     public function testThatStemWordWithKoi8rCharencReturnsTheExpectedStem(string $algorithm, string $word, string $stem): void
     {
 
@@ -167,6 +176,9 @@ class StemmerTest extends TestCase
 
     }
 
+    /**
+     * @return array<int, array{string, string, string}>
+     */
     public static function stemWordKoi8rCharencProvider(): array
     {
 
@@ -178,12 +190,12 @@ class StemmerTest extends TestCase
 
     /**
      * @param string $algorithm
-     * @param array $words
-     * @param array $stems
+     * @param string[] $words
+     * @param string[] $stems
      *
-     * @dataProvider stemWordsUtf8CharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordsUtf8CharencProvider')]
     public function testThatStemWordsWithNoCharencReturnsTheExpectedStems(string $algorithm, array $words, array $stems): void
     {
 
@@ -194,12 +206,12 @@ class StemmerTest extends TestCase
 
     /**
      * @param string $algorithm
-     * @param array $words
-     * @param array $stems
+     * @param string[] $words
+     * @param string[] $stems
      *
-     * @dataProvider stemWordsUtf8CharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordsUtf8CharencProvider')]
     public function testThatStemWordsWithUtf8CharencReturnsTheExpectedStems(string $algorithm, array $words, array $stems): void
     {
 
@@ -208,6 +220,9 @@ class StemmerTest extends TestCase
 
     }
 
+    /**
+     * @return array<int, array{string, string[], string[]}>
+     */
     public static function stemWordsUtf8CharencProvider(): array
     {
 
@@ -227,12 +242,12 @@ class StemmerTest extends TestCase
 
     /**
      * @param string $algorithm
-     * @param array $words
-     * @param array $stems
+     * @param string[] $words
+     * @param string[] $stems
      *
-     * @dataProvider stemWordsIso88591CharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordsIso88591CharencProvider')]
     public function testThatStemWordsWithIso88591CharencReturnsTheExpectedStems(string $algorithm, array $words, array $stems): void
     {
 
@@ -241,6 +256,7 @@ class StemmerTest extends TestCase
             $words
         );
         $stemmer = new Stemmer($algorithm, CharacterEncodingEnum::ISO_8859_1);
+        /** @var string[] $words */
         $actualStems = array_map(
             fn ($stem) => iconv('ISO-8859-1', 'UTF-8', $stem),
             $stemmer->stemWords($words)
@@ -249,6 +265,9 @@ class StemmerTest extends TestCase
 
     }
 
+    /**
+     * @return array<int, array{string, string[], string[]}>
+     */
     public static function stemWordsIso88591CharencProvider(): array
     {
 
@@ -262,12 +281,12 @@ class StemmerTest extends TestCase
 
     /**
      * @param string $algorithm
-     * @param array $words
-     * @param array $stems
+     * @param string[] $words
+     * @param string[] $stems
      *
-     * @dataProvider stemWordsIso88592CharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordsIso88592CharencProvider')]
     public function testThatStemWordsWithIso88592CharencReturnsTheExpectedStems(string $algorithm, array $words, array $stems): void
     {
 
@@ -276,6 +295,7 @@ class StemmerTest extends TestCase
             $words
         );
         $stemmer = new Stemmer($algorithm, CharacterEncodingEnum::ISO_8859_2);
+        /** @var string[] $words */
         $actualStems = array_map(
             fn ($stem) => iconv('ISO-8859-2', 'UTF-8', $stem),
             $stemmer->stemWords($words)
@@ -284,6 +304,9 @@ class StemmerTest extends TestCase
 
     }
 
+    /**
+     * @return array<int, array{string, string[], string[]}>
+     */
     public static function stemWordsIso88592CharencProvider(): array
     {
 
@@ -295,12 +318,12 @@ class StemmerTest extends TestCase
 
     /**
      * @param string $algorithm
-     * @param array $words
-     * @param array $stems
+     * @param string[] $words
+     * @param string[] $stems
      *
-     * @dataProvider stemWordsKoi8rCharencProvider
      * @throws UnavailableAlgorithmException
      */
+    #[DataProvider('stemWordsKoi8rCharencProvider')]
     public function testThatStemWordsWithKoi8rCharencReturnsTheExpectedStems(string $algorithm, array $words, array $stems): void
     {
 
@@ -309,6 +332,7 @@ class StemmerTest extends TestCase
             $words
         );
         $stemmer = new Stemmer($algorithm, CharacterEncodingEnum::KOI8_R);
+        /** @var string[] $words */
         $actualStems = array_map(
             fn ($stem) => iconv('KOI8-R', 'UTF-8', $stem),
             $stemmer->stemWords($words)
@@ -317,6 +341,9 @@ class StemmerTest extends TestCase
 
     }
 
+    /**
+     * @return array<int, array{string, string[], string[]}>
+     */
     public static function stemWordsKoi8rCharencProvider(): array
     {
 

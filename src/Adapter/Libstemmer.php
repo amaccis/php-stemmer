@@ -48,6 +48,9 @@ final class Libstemmer
 
     }
 
+    /**
+     * @param int<0, max> $size
+     */
     public function sbStemmerStem(CData $sbStemmer, string $word, int $size): CData
     {
 
@@ -60,6 +63,9 @@ final class Libstemmer
 
     }
 
+    /**
+     * @return int<0, max>
+     */
     public function sbStemmerLength(CData $sbStemmer): int
     {
 
