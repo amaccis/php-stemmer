@@ -2,7 +2,7 @@
     "name": "amaccis/php-stemmer",
     "type": "library",
     "description": "A PHP interface to the Snowball stemming algorithms",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "keywords": [
         "snowball",
         "stem",
