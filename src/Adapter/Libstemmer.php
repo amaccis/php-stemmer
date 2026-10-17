@@ -16,7 +16,10 @@ final class Libstemmer
     public function __construct(string $filename)
     {
 
-        $this->ffi = \FFI::load($filename);
+        // FFI::load() throws FFI\Exception on failure
+        /** @var FFI $ffi */
+        $ffi = \FFI::load($filename);
+        $this->ffi = $ffi;
 
     }
 
@@ -54,9 +57,13 @@ final class Libstemmer
     public function sbStemmerStem(CData $sbStemmer, string $word, int $size): CData
     {
 
+        // FFI methods throw FFI\Exception on failure
+        /** @var CData $c_word */
         $c_word = $this->ffi->new("char[$size]");
         FFI::memcpy($c_word, $word, $size);
-        $sb_symbol = $this->ffi->cast($this->ffi->type('sb_symbol'), $c_word);
+
+        /** @var CData $sb_symbol */
+        $sb_symbol = $this->ffi->cast('sb_symbol', $c_word);
         $word = FFI::addr($sb_symbol);
 
         return $this->ffi->sb_stemmer_stem($sbStemmer, $word, $size);

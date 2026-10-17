@@ -14,10 +14,10 @@ jobs:
       max-parallel: 1
       matrix:
         container:
-          - "amaccis/php-libstemmer:8.2.32-3.1.1"
-          - "amaccis/php-libstemmer:8.3.32-3.1.1"
-          - "amaccis/php-libstemmer:8.4.23-3.1.1"
-          - "amaccis/php-libstemmer:8.5.8-3.1.1"
+          - "amaccis/php-libstemmer:8.2.34-3.2.0"
+          - "amaccis/php-libstemmer:8.3.35-3.2.0"
+          - "amaccis/php-libstemmer:8.4.26-3.2.0"
+          - "amaccis/php-libstemmer:8.5.11-3.2.0"
 
     container:
       image: ${{ matrix.container }}
